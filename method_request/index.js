@@ -1,9 +1,8 @@
-const http = require('http');
-
 const requestListener = (request, response) => {
     response.setHeader('Content-Type', 'text/html');
     response.statusCode = 200;
 
+    // perbedaan terletak pada penanganan request dengan method GET, POST, PUT, dan DELETE.
     const {
         method
     } = request;
@@ -13,20 +12,17 @@ const requestListener = (request, response) => {
     }
 
     if (method === 'POST') {
-        let body = [];
-
-        request.on('data', (chunk) => {
-            body.push(chunk);
-        });
-
-        request.on('end', () => {
-            body = Buffer.concat(body).toString();
-            const {
-                name
-            } = JSON.parse(body);
-            response.end(`<h1>Hai, ${name}!</h1>`);
-        });
+        response.end('<h1>Hai!</h1>');
     }
+
+    if (method === 'PUT') {
+        response.end('<h1>Bonjour!</h1>');
+    }
+
+    if (method === 'DELETE') {
+        response.end('<h1>Salam!</h1>');
+    }
+    // End of the difference
 };
 
 const server = http.createServer(requestListener);

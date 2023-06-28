@@ -12,6 +12,7 @@ const requestListener = (request, response) => {
         response.end('<h1>Hello!</h1>');
     }
 
+    // Pembedaannya terletak pada penanganan request dengan method POST.
     if (method === 'POST') {
         let body = [];
 
@@ -27,6 +28,7 @@ const requestListener = (request, response) => {
             response.end(`<h1>Hai, ${name}!</h1>`);
         });
     }
+    // End of the difference
 };
 
 const server = http.createServer(requestListener);
